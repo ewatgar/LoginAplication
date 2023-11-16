@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ButtonTransparent">
+        <item name="android:background">@drawable/selector_button</item>
+    </style>
+
+    <!-- Se puede utilizar la herencia entre los estilos definidos por el desarrollador -->
+    <style name="ButtonTransparent.TextColor">
+        <item name="android:textColor">@color/color_secondary</item>
+    </style>
+    <style name="InvoiceTitleSmall" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="SignIntextInputLayout">
+        <item name="hintTextColor">@color/signin_hintcolor</item>
+        <item name="errorTextColor">@android:color/holo_red_light</item>
+        <item name="boxBackgroundColor">@android:color/darker_gray</item>
+    </style>
+</resources>

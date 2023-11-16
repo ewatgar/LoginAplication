@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">LoginAplication</string>
+    <string name="tvTitleSignIn">Se implementará Login</string>
+    <string name="tvOtherPlatformsSignInText">Inicia sesión a través de otras plataformas</string>
+    <string name="tieEmailSignInHint">Email</string>
+    <string name="tiePasswordSignInHint">Contraseña</string>
+    <string name="tvTitleSignUp">Implementacion Registro</string>
+    <string name="tieEmailSignUpHint">Email</string>
+    <string name="tiePasswordSignUpHint">Contraseña</string>
+    <string name="tieConfirmPasswordSignUpHint">Confirmar contraseña</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
