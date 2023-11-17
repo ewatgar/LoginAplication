@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.loginaplication.databinding.FragmentSignUpBinding
 
@@ -43,6 +44,23 @@ class SignUpFragment : Fragment() {
         binding.spProfile.setSelection(2)
         //3. Inicializar el listener que se lanza cuando el usuario modifica el valor
         binding.spProfile.onItemSelectedListener=null*/
+
+        val listener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val profile = parent.adapter.getItem(position)
+                //El ArrayList del adapter se encuentra en esta función mediante itemList
+                val profile = itemList.get(position)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
 
         //Se usa el modismo With que dado un objeto se puede modificar propiedades dentro del bloque
         with (binding.spProfile){
