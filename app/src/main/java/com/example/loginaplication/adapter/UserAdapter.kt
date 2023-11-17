@@ -11,8 +11,22 @@ import com.example.loginaplication.data.model.User
 import com.example.loginaplication.databinding.LayoutUserItemBinding
 import de.hdodenhof.circleimageview.CircleImageView
 
-class UserAdapter(private val dataset: MutableList<User>, private val context: Context) :
+class UserAdapter(
+    private val dataset: MutableList<User>,
+    private val context: Context,
+    private val listener:OnUserClick,
+    private val onItemClick: (user:User)-> Unit
+) :
     RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+
+    /**
+     * Esta interfaz es el contrato entre el Adapter y el Fragmento que lo contiene.
+     */
+    interface OnUserClick {
+        fun userClick(user: User) //Pulsaciçon corta
+        fun userOnLongClick(user: User) //Pulsación larga
+        //fun deleteClick(user: User) //Eliminar usuario
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -50,13 +64,31 @@ class UserAdapter(private val dataset: MutableList<User>, private val context: C
             tvEmail.text = item.email
         }
     }*/
-    class UserViewHolder(private val binding: LayoutUserItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class UserViewHolder(private val binding: LayoutUserItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: User, context: Context) {
-            with(binding){
+            with(binding) {
+                //imgUser.text = item.name.substring(0)
                 tvName.text = item.name
                 tvSurname.text = item.surname
                 tvEmail.text = item.email
+                //Manejamos el evento EventClick
+                root.setOnClickListener { _ ->
+                    //Llamaré a un método de la interfaz declarada dentro del adapter
+                    //Como no se utiliza el parámetro de entrada de tipo View, Kotlin me recomienda usar '_'
+                    //listener.userClick(item)
+                    onItemClick(item)
+                }
+                //Manejar la pulsación larga EventLongClick
+                root.setOnLongClickListener { _ ->
+                    listener.userOnLongClick(item)
+                    //Se debe indicar al framework/android que se consume el evento
+                    //todo ???
+                    //return@SetOnLongClickListener true
+                    true
+                }
+
             }
             /*
             binding.tvName.text = item.name

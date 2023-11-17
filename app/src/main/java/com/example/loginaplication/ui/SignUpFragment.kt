@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.loginaplication.databinding.FragmentSignUpBinding
 
 class SignUpFragment : Fragment() {
@@ -52,9 +53,12 @@ class SignUpFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                val profile = parent.adapter.getItem(position)
+                val profile = parent?.adapter?.getItem(position)
+                Toast.makeText(requireActivity(),"Elemento pulsado $profile", Toast.LENGTH_SHORT).show()
+
+
                 //El ArrayList del adapter se encuentra en esta función mediante itemList
-                val profile = itemList.get(position)
+                //val profile = itemList.get(position)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -66,7 +70,7 @@ class SignUpFragment : Fragment() {
         with (binding.spProfile){
             this.adapter = adapter
             setSelection(2)
-            onItemSelectedListener=null
+            onItemSelectedListener=listener
         }
     }
 }
