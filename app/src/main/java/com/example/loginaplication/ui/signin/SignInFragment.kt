@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import com.example.loginaplication.R
@@ -49,11 +51,37 @@ class SignInFragment : Fragment() {
         binding.btRegister.setOnClickListener {
             findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
         }
-        /*
-        Este código ya no es necesario ya que se implementa mediante Data Binding
+        /* Este código ya no es necesario ya que se implementa mediante Data Binding:
         binding.bUserList.setOnClickListener {
             findNavController().navigate(R.id.action_signInFragment_to_userListFragment)
         }*/
+        viewModel.getState().observe(viewLifecycleOwner, Observer {
+            when (it){
+                SignInState.EmailFormatError -> setEmailEmptyError()
+                SignInState.PasswordEmptyError -> setPasswordEmptyError()
+                else -> onSuccess()
+            }
+        })
+    }
+
+    /**
+     * Función que muestra el error de Email Empty
+     */
+    private fun setEmailEmptyError() {
+        binding.tilEmailSignIn.error = getString(R.string.errEmailEmpty)
+        binding.tilEmailSignIn.requestFocus() //el cursor se posiciona en el campo donde haya error
+    }
+
+    /**
+     * Función que muestra el error de Password Empty
+     */
+    private fun setPasswordEmptyError() {
+        binding.tilPasswordSignIn.error = getString(R.string.errEmailEmpty)
+        binding.tilPasswordSignIn.requestFocus() //el cursor se posiciona en el campo donde haya error
+    }
+
+    private fun onSuccess() {
+        Toast.makeText(requireContext(),"Caso de uso/Error",Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
