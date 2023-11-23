@@ -1,10 +1,13 @@
 package com.example.loginaplication.ui.signin
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -15,13 +18,13 @@ import com.example.loginaplication.databinding.FragmentSignInBinding
 
 class SignInFragment : Fragment() {
 
-    private var _binding : FragmentSignInBinding? = null
+    private var _binding: FragmentSignInBinding? = null
     private val binding
         get() = _binding!! //si el valor es nulo, lanza una excepción
 
     //Se inicializará posteriormente el viewModel
     //private lateinit var viewModel: SignInViewModel
-    private val viewModel:SignInViewModel by viewModels()
+    private val viewModel: SignInViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +46,9 @@ class SignInFragment : Fragment() {
         //los valores del Binding en base al ciclo de vida
         binding.lifecycleOwner = this
 
+
+        binding.tieEmailSignIn.addTextChangedListener()
+
         return binding.root;
     }
 
@@ -56,7 +62,7 @@ class SignInFragment : Fragment() {
             findNavController().navigate(R.id.action_signInFragment_to_userListFragment)
         }*/
         viewModel.getState().observe(viewLifecycleOwner, Observer {
-            when (it){
+            when (it) {
                 SignInState.EmailFormatError -> setEmailEmptyError()
                 SignInState.PasswordEmptyError -> setPasswordEmptyError()
                 else -> onSuccess()
@@ -68,7 +74,7 @@ class SignInFragment : Fragment() {
      * Función que muestra el error de Email Empty
      */
     private fun setEmailEmptyError() {
-        binding.tilEmailSignIn.error = getString(R.string.errEmailEmpty)
+        binding.tieEmailSignIn.error = getString(R.string.errEmailEmpty)
         binding.tilEmailSignIn.requestFocus() //el cursor se posiciona en el campo donde haya error
     }
 
@@ -76,16 +82,31 @@ class SignInFragment : Fragment() {
      * Función que muestra el error de Password Empty
      */
     private fun setPasswordEmptyError() {
-        binding.tilPasswordSignIn.error = getString(R.string.errEmailEmpty)
+        binding.tiePasswordSignIn.error = getString(R.string.errEmailEmpty)
         binding.tilPasswordSignIn.requestFocus() //el cursor se posiciona en el campo donde haya error
     }
 
     private fun onSuccess() {
-        Toast.makeText(requireContext(),"Caso de uso/Error",Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Caso de uso/Error", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    inner class SignInTextWatcher : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            //no se usa
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            //no se usa
+        }
+
+        //la clase externa debe ver las propiedades de la clase interna
+        override fun afterTextChanged(s: Editable?) {
+            //TODO: check empty email textInputLayout
+        }
     }
 }
