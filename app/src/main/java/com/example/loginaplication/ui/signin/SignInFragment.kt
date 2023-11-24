@@ -65,9 +65,19 @@ class SignInFragment : Fragment() {
             when (it) {
                 SignInState.EmailFormatError -> setEmailEmptyError()
                 SignInState.PasswordEmptyError -> setPasswordEmptyError()
+                //hay que poner 'is' porque es un data CLASS
+                is SignInState.AuthenticationError -> showMessage(it.message)
                 else -> onSuccess()
             }
         })
+    }
+
+    /**
+     * Función que muestra al usuario un mensaje
+     */
+    private fun showMessage(message: String) {
+        //TODO: showMessage
+        Toast.makeText(requireContext(), "Mi primer MVVM: $message", Toast.LENGTH_SHORT).show()
     }
 
     /**
@@ -106,7 +116,6 @@ class SignInFragment : Fragment() {
 
         //la clase externa debe ver las propiedades de la clase interna
         override fun afterTextChanged(s: Editable?) {
-            //TODO: check empty email textInputLayout
             when (textView.id) {
                 R.id.tieEmailSignIn -> {
                     binding.tilEmailSignIn.error = null
