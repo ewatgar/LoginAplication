@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -46,8 +47,7 @@ class SignInFragment : Fragment() {
         //los valores del Binding en base al ciclo de vida
         binding.lifecycleOwner = this
 
-
-        binding.tieEmailSignIn.addTextChangedListener()
+        binding.tieEmailSignIn.addTextChangedListener(SignInTextWatcher(binding.tieEmailSignIn))
 
         return binding.root;
     }
@@ -95,7 +95,7 @@ class SignInFragment : Fragment() {
         _binding = null
     }
 
-    inner class SignInTextWatcher : TextWatcher {
+    open inner class SignInTextWatcher(private val textView: TextView) : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             //no se usa
         }
@@ -107,6 +107,15 @@ class SignInFragment : Fragment() {
         //la clase externa debe ver las propiedades de la clase interna
         override fun afterTextChanged(s: Editable?) {
             //TODO: check empty email textInputLayout
+            when (textView.id) {
+                R.id.tieEmailSignIn -> {
+                    binding.tilEmailSignIn.error = null
+                    binding.tilPasswordSignIn.isErrorEnabled = false
+                }
+
+                R.id.tiePasswordSignIn -> binding.tilPasswordSignIn.error = null
+
+            }
         }
     }
 }
