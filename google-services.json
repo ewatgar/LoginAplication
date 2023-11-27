@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "883538609033",
+    "project_id": "invoice-97d2c",
+    "storage_bucket": "invoice-97d2c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883538609033:android:c8ded3b91d54d99a0fd758",
+        "android_client_info": {
+          "package_name": "com.example.loginaplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCu0yBRIEfW3kwEcN66kKmt72iYviZ8Mg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
