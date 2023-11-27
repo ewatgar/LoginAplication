@@ -34,7 +34,8 @@ class UserListFragment : Fragment(), UserAdapter.OnUserClick {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //setUpUserAdapter() //se debe llamar antes que la creación del Recycler
+        /* **IGNORAR**
+        //setUpUserAdapter() //se debe llamar antes que la creación del Recycler*/
         setUpUserRecyler()
     }
 
