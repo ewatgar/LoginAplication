@@ -54,22 +54,43 @@ class SignInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
-        }
         /* Este código ya no es necesario ya que se implementa mediante Data Binding:
+        binding.btLogin.setOnClickListener {
+            findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
+        }*/
+
         binding.bUserList.setOnClickListener {
             findNavController().navigate(R.id.action_signInFragment_to_userListFragment)
-        }*/
+        }
+
+        binding.bRegister.setOnClickListener{
+            findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
+        }
+
         viewModel.getState().observe(viewLifecycleOwner, Observer {
             when (it) {
                 SignInState.EmailFormatError -> setEmailEmptyError()
                 SignInState.PasswordEmptyError -> setPasswordEmptyError()
                 //hay que poner 'is' porque es un data CLASS
                 is SignInState.AuthenticationError -> showMessage(it.message)
+                is SignInState.Loading -> showProgressbar(it.value)
                 else -> onSuccess()
             }
         })
+        //TODO binding
+        binding.tieEmailSignIn.addTextChangedListener(SignInTextWatcher(binding.tieEmailSignIn))
+        binding.tiePasswordSignIn.addTextChangedListener(SignInTextWatcher(binding.tiePasswordSignIn))
+    }
+
+    /**
+     * Mostrar un progressbar en el comienzo de una operacion larga como es una consula
+     * a la base de datos, Firebase o bien ocultar cuando la operación ha terminado
+     */
+    private fun showProgressbar(value: Boolean) {
+        if (value)
+            findNavController().navigate((R.id.action_signInFragment_to_fragmentProgressDialog))
+        else
+            findNavController().popBackStack()
     }
 
     /**
@@ -77,7 +98,8 @@ class SignInFragment : Fragment() {
      */
     private fun showMessage(message: String) {
         //Toast.makeText(requireContext(), "Mi primer MVVM: $message", Toast.LENGTH_SHORT).show()
-        val action = SignInFragmentDirections.actionSignInFragmentToBaseFragmentDialog("Error", message)
+        val action =
+            SignInFragmentDirections.actionSignInFragmentToBaseFragmentDialog("Error", message)
         //Navegamos al fragmento Dialog mediante la variable creada
         findNavController().navigate(action) //No se indica R.id
     }

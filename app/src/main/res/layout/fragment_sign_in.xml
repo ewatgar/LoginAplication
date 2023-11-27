@@ -64,7 +64,7 @@
                 android:text="Recordar" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btRegister"
+                android:id="@+id/btLogin"
                 style="@style/ButtonTransparent.TextColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,10 +76,19 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bUserList"
+            style="@style/ButtonTransparent.TextColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_button"
             android:text="UserList" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bRegister"
+            style="@style/ButtonTransparent.TextColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_button"
+            android:text="Register" />
 
         <TextView
             android:id="@+id/tvOtherPlatforms"
