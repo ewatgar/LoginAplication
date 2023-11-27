@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_signInFragment_to_userListFragment"
             app:destination="@id/userListFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_baseFragmentDialog"
+            app:destination="@id/baseFragmentDialog" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -36,4 +39,17 @@
         android:name="com.example.loginaplication.ui.UserListFragment"
         android:label="fragment_user_list"
         tools:layout="@layout/fragment_user_list" />
+
+    <!--Asegurar que el IDE añade el cuadro de diálogo con la etiqueta Dialog-->
+    <dialog
+        android:id="@+id/baseFragmentDialog"
+        android:name="com.example.loginaplication.base.BaseFragmentDialog"
+        android:label="BaseFragmentDialog" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="message"
+            app:argType="string" />
+    </dialog>
 </navigation>

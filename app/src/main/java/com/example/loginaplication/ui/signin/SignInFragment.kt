@@ -76,8 +76,10 @@ class SignInFragment : Fragment() {
      * Función que muestra al usuario un mensaje
      */
     private fun showMessage(message: String) {
-        //TODO: showMessage
-        Toast.makeText(requireContext(), "Mi primer MVVM: $message", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(requireContext(), "Mi primer MVVM: $message", Toast.LENGTH_SHORT).show()
+        val action = SignInFragmentDirections.actionSignInFragmentToBaseFragmentDialog("Error", message)
+        //Navegamos al fragmento Dialog mediante la variable creada
+        findNavController().navigate(action) //No se indica R.id
     }
 
     /**
