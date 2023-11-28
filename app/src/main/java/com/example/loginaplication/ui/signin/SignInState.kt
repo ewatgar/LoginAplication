@@ -1,6 +1,6 @@
 package com.example.loginaplication.ui.signin
 
-import android.accounts.Account
+import com.example.loginaplication.data.account.Account
 
 sealed class SignInState{
     object EmailEmptyError: SignInState()

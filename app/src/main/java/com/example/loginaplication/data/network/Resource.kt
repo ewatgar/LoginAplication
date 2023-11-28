@@ -10,7 +10,6 @@ sealed class Resource {
     //data class Success<T,E>(var data: T, var settings: E) : Resource()
     //data class Success<T>(var data: Collection<T>) : Resource() //Collection<T> puede ser o List<String>, o Set<User>, etc
 
-
     data class Success<T>(var data: T) : Resource()
     data class Error(var exception: Exception) : Resource()
 }

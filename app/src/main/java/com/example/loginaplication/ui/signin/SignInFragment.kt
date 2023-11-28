@@ -74,6 +74,8 @@ class SignInFragment : Fragment() {
                 //hay que poner 'is' porque es un data CLASS
                 is SignInState.AuthenticationError -> showMessage(it.message)
                 is SignInState.Loading -> showProgressbar(it.value)
+                //TODO que salga el mensaje de success
+                is SignInState.Success -> Toast.makeText(requireContext(), "Login correcto del usuario", Toast.LENGTH_SHORT).show()
                 else -> onSuccess()
             }
         })
