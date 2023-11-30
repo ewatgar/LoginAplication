@@ -21,7 +21,7 @@ class AuthFirebaseRepository private constructor(){
         private var authFirebase = FirebaseAuth.getInstance()
 
         suspend fun login(email: String, password: String): Resource{
-            var account: Account? = null;
+            lateinit var account: Account
 
             //TODO: crash lateinit property account has not been initialized
             withContext(Dispatchers.IO){
