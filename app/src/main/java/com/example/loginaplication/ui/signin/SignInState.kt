@@ -3,7 +3,7 @@ package com.example.loginaplication.ui.signin
 import com.example.loginaplication.data.account.Account
 
 sealed class SignInState{
-    object EmailEmptyError: SignInState()
+    data object EmailEmptyError: SignInState()
     data object EmailFormatError: SignInState()
     data object PasswordEmptyError: SignInState()
     data object PasswordFormatError: SignInState()
