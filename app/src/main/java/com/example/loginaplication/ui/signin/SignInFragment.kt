@@ -47,8 +47,6 @@ class SignInFragment : Fragment() {
         //los valores del Binding en base al ciclo de vida
         binding.lifecycleOwner = this
 
-        binding.tieEmailSignIn.addTextChangedListener(SignInTextWatcher(binding.tieEmailSignIn))
-
         return binding.root;
     }
 
@@ -74,9 +72,8 @@ class SignInFragment : Fragment() {
                 //hay que poner 'is' porque es un data CLASS
                 is SignInState.AuthenticationError -> showMessage(it.message)
                 is SignInState.Loading -> showProgressbar(it.value)
-                //TODO que salga el mensaje de success
-                is SignInState.Success -> Toast.makeText(requireContext(), "Login correcto del usuario", Toast.LENGTH_SHORT).show()
-                else -> onSuccess()
+                is SignInState.Success -> onSuccess()
+                else -> placeholder()
             }
         })
         //TODO binding
@@ -123,6 +120,10 @@ class SignInFragment : Fragment() {
     }
 
     private fun onSuccess() {
+        Toast.makeText(requireContext(), "Login correcto del usuario", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun placeholder() {
         Toast.makeText(requireContext(), "Caso de uso/Error", Toast.LENGTH_SHORT).show()
     }
 

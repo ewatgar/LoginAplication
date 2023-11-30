@@ -49,7 +49,6 @@ class SignInViewModel : ViewModel() {
                     //Vamos a ejecutar el login del repositorio -> que pregunta a la capa de la infraestructura (firebase, bbdd, etc)
                     state.value = SignInState.Loading(true)
 
-                    //TODO: DUDA LOADING ??????????????????
                     //hay que checkear si el usuario(email) y el password están en la base de datos
                     //La respuesta del Repositorio es Asíncrona
                     //val result = UserRepository.login(email.value!!, password.value!!)
@@ -58,7 +57,7 @@ class SignInViewModel : ViewModel() {
                     //OBLIGATORIO: pausar/quitar el FragmentDialog antes de mostras el error, ya que el Fragment
                     //está pausado
                     state.value = SignInState.Loading(false)
-                    //TODO: --------------------
+
                     when (result){
                         //No se sabe que tipo de dato es (T), así que se va a querer obtener un Account
                         // T se pone como asterisco, acepta TOD.O tipo de dato
@@ -71,7 +70,7 @@ class SignInViewModel : ViewModel() {
                             try{
                                 state.value = SignInState.Success(account!!)
                             } catch (e:Exception){
-
+                                //e.localizedMessage
                             }
                         }
                         is Resource.Error -> {
