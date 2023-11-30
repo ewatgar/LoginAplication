@@ -67,11 +67,12 @@ class SignInViewModel : ViewModel() {
                             //TODO casting Any? a Account
                             val account: Account? = result.data as? Account
 
-                            try{
-                                state.value = SignInState.Success(account!!)
+                            state.value = SignInState.Success(account!!)
+
+                            /*try{
                             } catch (e:Exception){
                                 //e.localizedMessage
-                            }
+                            }*/
                         }
                         is Resource.Error -> {
                             Log.i(TAG, "Información del dato ${result.exception.message}")

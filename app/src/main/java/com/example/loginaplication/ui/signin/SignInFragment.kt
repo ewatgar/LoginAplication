@@ -15,6 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import com.example.loginaplication.R
+import com.example.loginaplication.data.account.Account
 import com.example.loginaplication.databinding.FragmentSignInBinding
 
 class SignInFragment : Fragment() {
@@ -72,7 +73,7 @@ class SignInFragment : Fragment() {
                 //hay que poner 'is' porque es un data CLASS
                 is SignInState.AuthenticationError -> showMessage(it.message)
                 is SignInState.Loading -> showProgressbar(it.value)
-                is SignInState.Success -> onSuccess()
+                is SignInState.Success -> onSuccess() //onSuccess(it.account)
                 else -> placeholder()
             }
         })
