@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 
 /**
  * Singleton
- * Esta clase es accesible en todo el proyecto. No se puede crear objetos de esta clase
+ * Esta clase es accesible en todoo el proyecto. No se puede crear objetos de esta clase
  * constructor privado. Y tiene un objeto que contiene el listado de usuarios
  */
 class UserRepository private constructor() {
