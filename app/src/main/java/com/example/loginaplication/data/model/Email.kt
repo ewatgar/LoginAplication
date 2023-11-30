@@ -8,7 +8,7 @@ import java.util.regex.Pattern
  * En caso contrario lanza una excepción.
  */
 data class Email(val value:String){
-    private val pattern = Pattern.compile("")
+    private val pattern = Pattern.compile("/\\$+@\\$+\\.\\$+")
     init{
         //check si la cadena cumple con todoo el patrón
         if (!pattern.matcher(value).matches()){
