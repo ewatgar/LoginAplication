@@ -12,12 +12,26 @@ import com.example.loginaplication.databinding.LayoutUserItemBinding
 import de.hdodenhof.circleimageview.CircleImageView
 
 class UserAdapter(
-    private val dataset: MutableList<User>,
-    private val context: Context,
+    //private val dataset: MutableList<User>,
+    //TODO porque se quita context?
+    //private val context: Context,
     private val listener:OnUserClick,
     private val onItemClick: (user:User)-> Unit
 ) :
     RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+
+    //TODO dataset arraylist
+    //Se crea la coleccion de datos del adapter
+    private var dataset: ArrayList<User> = arrayListOf<User>()
+
+    /**
+     * Función que actualiza los datos del adapter y le dice a la vista que se invalide
+     * y vuelva a redibujarse
+     */
+    fun update(newDataSet: ArrayList<User>){
+        //Actualizar mi dataset y notificar a la vista el cambio
+        notifyDataSetChanged()
+    }
 
     /**
      * Esta interfaz es el contrato entre el Adapter y el Fragmento que lo contiene.
@@ -44,30 +58,14 @@ class UserAdapter(
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val item = dataset.get(position)
-        holder.bind(item, context)
+        holder.bind(item)
     }
 
-    /**
-     * La clase ViewHolder contiene todos los elementos de View o del layout XML que se ha inflado
-     */
-    //VERSION 1: usar findViewById
-    /*
-    class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvName = view.findViewById(R.id.tvName) as TextView
-        val tvSurname = view.findViewById(R.id.tvSurname) as TextView
-        val tvEmail = view.findViewById(R.id.tvEmail) as TextView
-        //val imgUser = view.findViewById(R.id.imgUser) as CircleImageView
 
-        fun bind(item: User, context: Context) {
-            tvName.text = item.name
-            tvSurname.text = item.surname
-            tvEmail.text = item.email
-        }
-    }*/
     inner class UserViewHolder(private val binding: LayoutUserItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: User, context: Context) {
+        fun bind(item: User) {
             with(binding) {
                 //imgUser.text = item.name.substring(0)
                 tvName.text = item.name
@@ -81,20 +79,15 @@ class UserAdapter(
                     onItemClick(item)
                 }
                 //Manejar la pulsación larga EventLongClick
+                //todo setonlongclicklistener???
                 root.setOnLongClickListener { _ ->
                     listener.userOnLongClick(item)
                     //Se debe indicar al framework/android que se consume el evento
-                    //todo ???
                     //return@SetOnLongClickListener true
                     true
                 }
 
             }
-            /*
-            binding.tvName.text = item.name
-            binding.tvSurname.text = item.surname
-            binding.tvEmail.text = item.email
-            //binding.imgUser.text = item.name.subString(0)*/
         }
     }
 }

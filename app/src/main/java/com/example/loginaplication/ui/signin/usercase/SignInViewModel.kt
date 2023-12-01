@@ -1,4 +1,4 @@
-package com.example.loginaplication.ui.signin
+package com.example.loginaplication.ui.signin.usercase
 
 import android.text.TextUtils
 import android.util.Log
@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.loginaplication.data.account.Account
 import com.example.loginaplication.data.network.Resource
 import com.example.loginaplication.data.repository.AuthFirebaseRepository
-import com.example.loginaplication.data.repository.UserRepository
 import kotlinx.coroutines.launch
 
 
@@ -64,9 +63,7 @@ class SignInViewModel : ViewModel() {
 
                         is Resource.Success<*> -> {
                             //Aquí tenemos que hacer un Casting Seguro porque el tipo de dato es genérica (*)
-                            //TODO casting Any? a Account
                             val account: Account? = result.data as? Account
-
                             state.value = SignInState.Success(account!!)
                         }
                         is Resource.Error -> {

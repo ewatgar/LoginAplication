@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.loginaplication.ui.signin.SignInViewModel" />
+            type="com.example.loginaplication.ui.signin.usercase.SignInViewModel" />
     </data>
 
     <LinearLayout

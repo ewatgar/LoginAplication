@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.loginaplication.ui.SignUpFragment"
+        android:name="com.example.loginaplication.ui.signup.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
     <fragment
@@ -39,9 +39,13 @@
     </fragment>
     <fragment
         android:id="@+id/userListFragment"
-        android:name="com.example.loginaplication.ui.UserListFragment"
+        android:name="com.example.loginaplication.ui.userlist.UserListFragment"
         android:label="fragment_user_list"
-        tools:layout="@layout/fragment_user_list" />
+        tools:layout="@layout/fragment_user_list" >
+        <action
+            android:id="@+id/action_userListFragment_to_fragmentProgressDialog"
+            app:destination="@id/fragmentProgressDialog" />
+    </fragment>
 
     <!--Asegurar que el IDE añade el cuadro de diálogo con la etiqueta Dialog-->
     <dialog

@@ -6,6 +6,7 @@ package com.example.loginaplication.data.repository
 import android.content.res.Resources
 import com.example.loginaplication.data.model.User
 import com.example.loginaplication.data.network.Resource
+import com.example.loginaplication.data.network.ResourceList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -16,6 +17,12 @@ import kotlinx.coroutines.withContext
  * constructor privado. Y tiene un objeto que contiene el listado de usuarios
  */
 class UserRepository private constructor() {
+
+    //TODO hacer que se inicialicen los datos de la lista
+
+    init {
+
+    }
 
     companion object {
         val dataSet: MutableList<User> = InitDataSetUser()
@@ -46,6 +53,21 @@ class UserRepository private constructor() {
                 // esperando a Firebase, y la función no es suspend. La app crashea.
             }
             return Resource.Error(Exception("El password es incorrecto"))
+        }
+
+        /**
+         * Esta función simula una consulta asincrona y devuelve el conjunto de usuarios de la
+         * aplicacion
+         */
+        suspend fun getUserList(): ResourceList {
+            return withContext(Dispatchers.IO) {
+                delay(2000)
+                when {
+                    dataSet.isEmpty() -> ResourceList.Error(Exception("No hay datos"))
+                    else -> ResourceList.Success(dataSet as ArrayList<User>)
+                }
+            }
+
         }
     }
 }

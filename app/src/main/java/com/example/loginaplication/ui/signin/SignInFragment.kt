@@ -8,15 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import com.example.loginaplication.R
-import com.example.loginaplication.data.account.Account
 import com.example.loginaplication.databinding.FragmentSignInBinding
+import com.example.loginaplication.ui.signin.usercase.SignInState
+import com.example.loginaplication.ui.signin.usercase.SignInViewModel
 
 class SignInFragment : Fragment() {
 
@@ -108,7 +107,7 @@ class SignInFragment : Fragment() {
      * Función que muestra el error de Email Empty
      */
     private fun setEmailEmptyError() {
-        binding.tieEmailSignIn.error = getString(R.string.errEmailEmpty)
+        binding.tilEmailSignIn.error = getString(R.string.errEmailEmpty)
         binding.tilEmailSignIn.requestFocus() //el cursor se posiciona en el campo donde haya error
     }
 
@@ -116,7 +115,7 @@ class SignInFragment : Fragment() {
      * Función que muestra el error de Password Empty
      */
     private fun setPasswordEmptyError() {
-        binding.tiePasswordSignIn.error = getString(R.string.errEmailEmpty)
+        binding.tilPasswordSignIn.error = getString(R.string.errPasswordEmpty)
         binding.tilPasswordSignIn.requestFocus() //el cursor se posiciona en el campo donde haya error
     }
 
