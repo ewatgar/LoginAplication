@@ -24,18 +24,19 @@ class AuthFirebaseRepository private constructor(){
             var account: Account? = null
 
             //TODO: crash lateinit property account has not been initialized
-            withContext(Dispatchers.IO){
+            return withContext(Dispatchers.IO){
                 try {
                     val authResult: AuthResult = authFirebase.signInWithEmailAndPassword(email,password).await()
                     //si da un error, directamente lanza una excepcion, nunca llega a esta parte del codigo
                     val user = authResult.user!!
 
                     account = Account.create(user.hashCode(), Email(email), password, user.displayName)
+                    Resource.Success(data= account)
+
                 } catch (e: Exception){
                     Resource.Error(e)
                 }
             }
-            return if (account != null) {Resource.Success(data= account)} else {Resource.Error(Exception("Account no se ha inicializado"))}
         }
     }
 }
