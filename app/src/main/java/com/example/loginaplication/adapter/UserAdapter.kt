@@ -30,6 +30,7 @@ class UserAdapter(
      */
     fun update(newDataSet: ArrayList<User>){
         //Actualizar mi dataset y notificar a la vista el cambio
+        dataset = newDataSet
         notifyDataSetChanged()
     }
 
@@ -44,7 +45,6 @@ class UserAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        //return UserViewHolder(layoutInflater.inflate(R.layout.layout_user_item, parent, false))
         return UserViewHolder(LayoutUserItemBinding.inflate(layoutInflater, parent, false))
     }
 
