@@ -1,4 +1,4 @@
-package com.example.loginaplication.ui.signin.usercase
+package com.example.loginaplication.ui.signin.usecase
 
 import com.example.loginaplication.data.account.Account
 

@@ -13,10 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.loginaplication.R
 import com.example.loginaplication.adapter.UserAdapter
 import com.example.loginaplication.data.model.User
-import com.example.loginaplication.data.repository.UserRepository
 import com.example.loginaplication.databinding.FragmentUserListBinding
-import com.example.loginaplication.ui.userlist.usercase.UserListState
-import com.example.loginaplication.ui.userlist.usercase.UserListViewModel
+import com.example.loginaplication.ui.userlist.usecase.UserListState
+import com.example.loginaplication.ui.userlist.usecase.UserListViewModel
 
 class UserListFragment : Fragment(), UserAdapter.OnUserClick {
     private var _binding: FragmentUserListBinding? = null

@@ -14,8 +14,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.loginaplication.R
 import com.example.loginaplication.databinding.FragmentSignInBinding
-import com.example.loginaplication.ui.signin.usercase.SignInState
-import com.example.loginaplication.ui.signin.usercase.SignInViewModel
+import com.example.loginaplication.ui.signin.usecase.SignInState
+import com.example.loginaplication.ui.signin.usecase.SignInViewModel
 
 class SignInFragment : Fragment() {
 

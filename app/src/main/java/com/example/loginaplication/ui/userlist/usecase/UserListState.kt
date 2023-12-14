@@ -1,4 +1,4 @@
-package com.example.loginaplication.ui.userlist.usercase
+package com.example.loginaplication.ui.userlist.usecase
 
 import com.example.loginaplication.data.model.User
 

@@ -1,4 +1,4 @@
-package com.example.loginaplication.ui.userlist.usercase
+package com.example.loginaplication.ui.userlist.usecase
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
